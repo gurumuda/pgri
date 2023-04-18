@@ -13,7 +13,7 @@ Untuk menjalankan aplikasi ini diperlukan beberapa persyaratan sebagai berikut
 ```
 
 - Download file zip atau clone repositori ini
-- Database ada di link deskripsi video
+- Database ada di link deskripsi video ini https://youtu.be/U9eW3eUxZRY
 
 ## 🔗 Links
 
