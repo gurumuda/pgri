@@ -224,7 +224,7 @@
                                         <div class="icon">
                                             <img src="<?= base_url('assets/template/front'); ?>/assets/images/contact-icon-01.png" alt="email icon">
                                         </div>
-                                        <a href="#">pgri.jorong@gmail.com</a>
+                                        <a href="#">yuwandianto@gmail.com</a>
                                     </li>
                                     <li>
                                         <div class="icon">
