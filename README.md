@@ -24,4 +24,4 @@ Untuk menjalankan aplikasi ini diperlukan beberapa persyaratan sebagai berikut
 
 https://link.dana.id/qr/rvfu66u4
 
-![alt text](https://github.com/gurumuda/dana/blob/main/dana-qrcode.jpg?raw=true)
+<img src="assets\dana-qrcode.jpg" width="250"/>
