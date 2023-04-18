@@ -34,7 +34,7 @@
                 <div class="card">
                     <div class="card-body">
                         <button type="submit" target="_blank" class="btn btn-primary">Cetak Kartu Terpilih</button>
-                        <a href="" target="_blank" class="btn btn-success">Cetak Semua Kartu</a>
+                        <!-- <a href="" target="_blank" class="btn btn-success">Cetak Semua Kartu</a> -->
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Data Anggota PGRI Kecamatan Jorong</h5>

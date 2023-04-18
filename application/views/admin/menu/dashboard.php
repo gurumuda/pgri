@@ -48,8 +48,8 @@
                                             <td><?= $no++; ?></td>
                                             <td><?= $member->instansi; ?></td>
                                             <td><?= $member->jumlah; ?> orang</td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>#</td>
+                                            <td>#</td>
                                         </tr>
                                     <?php endforeach; ?>
 

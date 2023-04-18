@@ -289,17 +289,17 @@ class Admin extends CI_Controller
             $sheet->setCellValue('W' . $i, $dt->npa);
 
 
-            // if ($dt->photo) {
-            //     $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
-            //     $drawing->setName('PhpSpreadsheet logo');
-            //     $drawing->setDescription('PhpSpreadsheet logo');
-            //     $drawing->setPath('./assets/images/photo/thumb/' . $dt->photo);
-            //     $drawing->setCoordinates('V' . $i);
-            //     $drawing->setHeight(80);
-            //     $drawing->setOffsetX(5);
-            //     $drawing->setOffsetY(5);
-            //     $drawing->setWorksheet($spreadsheet->getActiveSheet());
-            // }
+            if ($dt->photo) {
+                $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+                $drawing->setName('PhpSpreadsheet logo');
+                $drawing->setDescription('PhpSpreadsheet logo');
+                $drawing->setPath('./assets/images/photo/thumb/' . $dt->photo);
+                $drawing->setCoordinates('V' . $i);
+                $drawing->setHeight(80);
+                $drawing->setOffsetX(5);
+                $drawing->setOffsetY(5);
+                $drawing->setWorksheet($spreadsheet->getActiveSheet());
+            }
 
             $i++;
         }
@@ -347,7 +347,7 @@ class Admin extends CI_Controller
         if (!($this->session->userdata('username') && $this->session->userdata('level') == '2')) {
             redirect('dashboard', 'refresh');
         }
-
+        $this->buatbarcode();
         $data['members'] = $this->db->get('members')->result();
 
         $this->load->view('admin/template/meta', $data);
@@ -397,21 +397,21 @@ class Admin extends CI_Controller
         // $this->load->view('admin/menu/preveiwKartu');
         // $this->load->view('admin/template/script');
         // Require composer autoload
-        // if ($cetak) {
+        if ($cetak) {
 
-        //     $jml = count($cetak);
-        //     if ($jml == 5) {
-        //         $j = 5;
-        //     } elseif ($jml < 6) {
-        //         $j = $jml;
-        //     } elseif ($jml > 5) {
-        //         echo 'Error! <br> Maksimal mencetak 5 data';
-        //         die;
-        //     }
-        // } else {
-        //     echo 'Error ! <br> Tidak ada data dipilih!';
-        //     die;
-        // }
+            $jml = count($cetak);
+            if ($jml == 5) {
+                $j = 5;
+            } elseif ($jml < 6) {
+                $j = $jml;
+            } elseif ($jml > 5) {
+                echo 'Error! <br> Maksimal mencetak 5 data';
+                die;
+            }
+        } else {
+            echo 'Error ! <br> Tidak ada data dipilih!';
+            die;
+        }
 
 
 
@@ -424,7 +424,7 @@ class Admin extends CI_Controller
         $pdf->AddPage();
         $pdf->Line(105, 2, 105, 294);
 
-        $j = 1;
+        // $j = 1;
         for ($i = 0; $i < $j; $i++) {
             // Looping kotak
             $pdf->Rect($pdf->GetX() - 2, $pdf->GetY() - 2, 89, 55);
@@ -433,16 +433,18 @@ class Admin extends CI_Controller
             // Loping gambar
             $pdf->Image('assets/images/logo/pgri.png', $pdf->GetX() + 3, $pdf->GetY(), 12);
 
+            $pdf->Image('assets/images/logo/back.png', $pdf->GetX() + 103.2, $pdf->GetY() - 1.8, 88.5, 54.6);
+
             $pdf->Image('assets/images/logo/ttd_ketua.png', $pdf->GetX() + 36, $pdf->GetY() + 36, '', 12);
             $pdf->Image('assets/images/logo/ttd_sekretaris.png', $pdf->GetX() + 63, $pdf->GetY() + 38, '', 8);
             $pdf->Image('assets/images/logo/stamp.png', $pdf->GetX() + 48, $pdf->GetY() + 35, 14);
-            // if ($cetak[$i]->photo) {
-            //     $pdf->Image('assets/images/photo/thumb/' . $cetak[$i]->photo, $pdf->GetX() + 1, $pdf->GetY() + 15, 16, 22);
-            // }
-            // if ($cetak[$i]->barcode) {
+            if ($cetak[$i]->photo) {
+                $pdf->Image('assets/images/photo/thumb/' . $cetak[$i]->photo, $pdf->GetX() + 1, $pdf->GetY() + 15, 16, 22);
+            }
+            if ($cetak[$i]->barcode) {
 
-            //     $pdf->Image('assets/barcode/' . $cetak[$i]->barcode, $pdf->GetX() + 1, $pdf->GetY() + 40, 25);
-            // }
+                $pdf->Image('assets/barcode/' . $cetak[$i]->barcode, $pdf->GetX() + 1, $pdf->GetY() + 40, 25);
+            }
 
             $pdf->SetFont('Times', 'B', 15);
             $pdf->Cell(20, 0, '');
@@ -502,12 +504,12 @@ class Admin extends CI_Controller
             $pdf->Cell(40, 1, 'Sekretaris', 0, 0, 'C');
             $pdf->Ln(7);
             $pdf->Cell(30, 0, '');
-            $pdf->Cell(20, 1, 'Adang Heri Nugroho', 0, 0, 'C');
-            $pdf->Cell(40, 1, 'Isna Latifah', 0, 0, 'C');
+            $pdf->Cell(20, 1, 'Ketua PGRI', 0, 0, 'C');
+            $pdf->Cell(40, 1, 'Sekretaris PGRI', 0, 0, 'C');
             $pdf->Ln(2);
             $pdf->Cell(30, 0, '');
-            $pdf->Cell(20, 1, 'NPA. 16090200197', 0, 0, 'C');
-            $pdf->Cell(40, 1, 'NPA. 16090200364', 0, 0, 'C');
+            $pdf->Cell(20, 1, 'NPA. 0000005432', 0, 0, 'C');
+            $pdf->Cell(40, 1, 'NPA. 0000004763', 0, 0, 'C');
             $pdf->Ln(12);
         }
 
